@@ -106,8 +106,7 @@ Endpoints:
 ## Tests
 
 ### Running Backend Tests
-Run via Terminal or IDEA
-Coverage is very representable
+Run via Terminal or IDEA - Coverage is very representable
 
 ### Frontend Tests
 not implemented
