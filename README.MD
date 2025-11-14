@@ -148,8 +148,7 @@ This app is not focused on full production hardening. Known issues and limitatio
 *   For a prod per-user data and authorization rules would be needed
 
 ### 6\. H2 and in-memory data
-*   Backend uses an in-memory H2 database for `dev` and tests, data is reset on restart
-* 
+*   Backend uses an in-memory H2 database for `dev` and tests, data is reset on backend restart
 ### 7\. Front-end CSS
 *   Might not be 100% tested and perfect.
 
