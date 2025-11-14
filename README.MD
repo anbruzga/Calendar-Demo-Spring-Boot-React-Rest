@@ -49,8 +49,8 @@ There are three main ways to run the project.
 ### Option 1 – Docker Compose
 
 From root dir containing `docker-compose.yml`:
-`docker compose up ` or `docker compose up -d`
-(Might require a couple of minutes for everything to boot up, please be patient, it looks like it doesn't work at first)
+`docker compose up ` or `docker compose up -d`</br>
+**(Might require a couple of minutes for everything to boot up, please be patient, it looks like it doesn't work at first)**
 
 This will:
 *   Start the backend service using a Maven + Temurin 21 image, running `mvn spring-boot:run` in `calendar-reminders-backend/`.
