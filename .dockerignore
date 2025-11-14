@@ -1,0 +1,29 @@
+# VCS / IDE
+.git
+.gitignore
+.idea
+.vscode
+*.iml
+
+# Build output
+target
+*.log
+
+# OS / temp
+.DS_Store
+Thumbs.db
+tmp
+logs
+*.tmp
+*.swp
+
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# Build artifacts
+build
+dist
+coverage

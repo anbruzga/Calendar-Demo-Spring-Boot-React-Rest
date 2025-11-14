@@ -1,0 +1,488 @@
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  color: #222;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  sans-serif;
+}
+
+.app-header {
+  background-color: #1976d2;
+  color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calendar-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 700px;
+  max-width: 100%;   /* still shrink on small screens */
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-header__left {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.calendar-header__center {
+  text-align: center;
+}
+
+.calendar-header__right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.calendar-header__month {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.calendar-header__button {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.calendar-header__button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.calendar-header__button--today {
+  font-weight: 500;
+}
+
+.calendar-header__month {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.calendar-grid {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  width: 100%;
+}
+
+.calendar-grid__weekdays,
+.calendar-grid__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-grid__weekday {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-bottom: 0.25rem;
+  color: #666;
+}
+
+.calendar-grid__weeks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calendar-day-cell {
+  position: relative;
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  padding: 0.35rem 0.25rem 0.3rem;
+  text-align: left;
+  min-height: 4rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.calendar-day-cell__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.calendar-day-cell__holiday-name {
+  margin-top: 0.15rem;
+  font-size: 0.4rem;
+  line-height: 0.7rem;
+  color: #c62828;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.calendar-day-cell__number {
+  font-weight: 500;
+}
+
+.calendar-day-cell__badge {
+  display: inline-block;
+  margin-left: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.calendar-day-cell__dot {
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.4rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background-color: #1976d2;
+}
+
+.calendar-day-cell--outside-month {
+  color: #bbb;
+}
+
+.calendar-day-cell--today {
+  border: 1px solid #1976d2;
+}
+
+.calendar-day-cell--selected {
+  background-color: #e3f2fd;
+}
+
+.calendar-day-cell--disabled {
+  color: #ccc;
+  cursor: default;
+}
+
+.calendar-day-cell--disabled.calendar-day-cell--selected {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.calendar-day-cell--holiday {
+  color: #c62828;
+}
+
+.calendar-page__content {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  column-gap: 2rem;
+  row-gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.calendar-page__calendar {
+  width: 100%;
+}
+
+.calendar-page__sidebar {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .calendar-page__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calendar-page__selected-holiday {
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.reminder-list {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.reminder-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+
+.reminder-list__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.reminder-list__header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.reminder-list__button {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.reminder-list__button--primary {
+  border-color: #1976d2;
+  color: #fff;
+  background-color: #1976d2;
+}
+
+.reminder-list__button--danger {
+  border-color: #c62828;
+  color: #c62828;
+}
+
+.reminder-list__empty {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.reminder-list__items {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+
+.reminder-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #eee;
+  gap: 0.5rem;
+}
+
+.reminder-list__item:last-child {
+  border-bottom: none;
+}
+
+.reminder-list__item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.reminder-list__time {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.reminder-list__text {
+  font-size: 0.85rem;
+}
+
+.reminder-list__item-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.reminder-list__icon-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.reminder-form {
+  margin-top: 0.75rem;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.reminder-form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reminder-form__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.reminder-form__close {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.reminder-form__date {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.reminder-form__body {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.reminder-form__field label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+}
+
+.reminder-form__field textarea,
+.reminder-form__field input[type="time"] {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.reminder-form__error {
+  min-height: 1rem;
+  font-size: 0.8rem;
+  color: #c62828;
+}
+
+.reminder-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.reminder-form__button {
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.reminder-form__button--secondary {
+  border-color: #ccc;
+  background-color: #fff;
+}
+
+.reminder-form__button--primary {
+  border-color: #1976d2;
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.confirm-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.confirm-dialog {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.confirm-dialog__title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.confirm-dialog__message {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+}
+
+.confirm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.confirm-dialog__button {
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.confirm-dialog__button--secondary {
+  border-color: #ccc;
+  background-color: #fff;
+}
+
+.confirm-dialog__button--primary {
+  border-color: #c62828;
+  background-color: #c62828;
+  color: #fff;
+}
+
+.error-alert {
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  background-color: #ffebee;
+  color: #c62828;
+  font-size: 0.85rem;
+}
+
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.loading-spinner__circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  border-top-color: #1976d2;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

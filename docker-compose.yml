@@ -1,0 +1,29 @@
+services:
+  backend:
+    image: maven:3.9.7-eclipse-temurin-21
+    container_name: calendar-backend
+    working_dir: /app
+    command: mvn -q -DskipTests spring-boot:run
+    volumes:
+      - ./calendar-reminders-backend:/app
+      - ~/.m2:/root/.m2
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    ports:
+      - "8080:8080" # atm hardcoded in java backend
+
+  frontend:
+    image: node:22
+    container_name: calendar-frontend
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    volumes:
+      - ./frontend:/app
+    environment:
+      # - REACT_APP_BACKEND_BASE_URL=http://localhost:8080 -> need code changes to support this -> env.ts
+      # helps file watching on Windows / Docker Desktop
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

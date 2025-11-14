@@ -1,0 +1,22 @@
+package lt.calendar.reminders.web.error;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Builder;
+import lombok.Getter;
+
+import java.time.LocalDateTime;
+import java.util.Map;
+
+@Getter
+@Builder
+public class ApiErrorResponse {
+
+    private final LocalDateTime timestamp;
+    private final int status;
+    private final String error;
+    private final String message;
+    private final String path;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private final Map<String, String> fieldErrors;
+}
