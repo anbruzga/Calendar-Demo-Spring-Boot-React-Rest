@@ -66,7 +66,7 @@ public class NagerHolidayClientAdapter implements HolidayProviderPort {
             if (stopWatch.isRunning()) {
                 stopWatch.stop();
             }
-            log.error("Failed to fetch public holidays from Nager API for year {}: {}", year, ex.getMessage());
+            log.error("Failed to fetch public holidays from Nager API for year {}: \nException msg: {} \nException stacktrace: {} \nUrl: {}", year, ex.getMessage(), ex.getStackTrace(), url);
             return Collections.emptyList();
         }
     }
