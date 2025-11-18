@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "calendar.holidays.nager")
 public class NagerHolidayProperties {
 
-    private String baseUrl; // links to .properties todo
-    private String countryCode;  // links to .properties
+    // links to .properties
+    private String baseUrl;
+    private String countryCode;
+    private boolean useStaticMock;
 
 }

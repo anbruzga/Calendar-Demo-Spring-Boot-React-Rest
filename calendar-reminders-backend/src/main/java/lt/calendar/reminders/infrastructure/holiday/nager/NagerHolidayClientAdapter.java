@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import lt.calendar.reminders.domain.holiday.HolidayProviderPort;
 import lt.calendar.reminders.domain.holiday.PublicHoliday;
 import lt.calendar.reminders.util.MyStopWatch;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(
+        prefix = "calendar.holidays.nager",
+        name = "use-static-mock",
+        havingValue = "false",
+        matchIfMissing = true
+)
 public class NagerHolidayClientAdapter implements HolidayProviderPort {
 
     private final RestTemplate restTemplate;
