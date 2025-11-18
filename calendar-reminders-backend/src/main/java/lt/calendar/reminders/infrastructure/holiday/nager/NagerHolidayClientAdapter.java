@@ -1,10 +1,10 @@
 package lt.calendar.reminders.infrastructure.holiday.nager;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lt.calendar.reminders.domain.holiday.HolidayProviderPort;
 import lt.calendar.reminders.domain.holiday.PublicHoliday;
-import lombok.RequiredArgsConstructor;
 import lt.calendar.reminders.util.MyStopWatch;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,12 @@ public class NagerHolidayClientAdapter implements HolidayProviderPort {
 
     @Override
     public List<PublicHoliday> getPublicHolidays(int year) {
-        return cache.computeIfAbsent(year, this::fetchFromApi);
+        return cache.compute(year, (y, existing) -> {
+            if (existing != null && !existing.isEmpty()) {
+                return existing;
+            }
+            return fetchFromApi(y);
+        });
     }
 
     private List<PublicHoliday> fetchFromApi(int year) {
@@ -72,20 +77,20 @@ public class NagerHolidayClientAdapter implements HolidayProviderPort {
     }
 
     private PublicHoliday toDomain(NagerHolidayDto dto) {
-        return new PublicHoliday(
-                dto.date(),
-                dto.localName(),
-                dto.name(),
-                dto.countryCode(),
-                dto.type(),
-                dto.global()
-        );
+        return PublicHoliday.builder()
+                .date(dto.date)
+                .localName(dto.localName)
+                .englishName(dto.name)
+                .countryCode(dto.countryCode)
+                .type(dto.type)
+                .global(dto.global)
+                .build();
     }
 
     /**
      * Internal DTO for Nager API JSON mapping.
      */
-    private record NagerHolidayDto (
+    private record NagerHolidayDto(
             LocalDate date,
             String localName,
             String name,
@@ -93,5 +98,6 @@ public class NagerHolidayClientAdapter implements HolidayProviderPort {
             boolean fixed,
             boolean global,
             String type
-    ) { }
+    ) {
+    }
 }
